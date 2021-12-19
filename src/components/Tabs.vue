@@ -2,9 +2,9 @@
   <div class="tabs group p-0.5 rounded-lg flex bg-gray-100 hover:bg-gray-200">
     <button
       type="button"
-      class="tab-list flex focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 rounded-md focus:outline-none focus-visible:ring-offset-gray-100"
+      class="flex rounded-md tab-list focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus:outline-none focus-visible:ring-offset-gray-100"
       @click="
-        setActiveTab('list');
+        activeTab = 'list';
         $emit('onTabChange', 'list');
       "
     >
@@ -19,7 +19,7 @@
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-4 w-4"
+          class="w-4 h-4"
           :class="{ 'text-green-400': activeTab === 'list' }"
           viewBox="0 0 20 20"
           fill="currentColor"
@@ -39,13 +39,13 @@
         activeTab === 'favs' ? 'bg-white shadow-sm ring-1 ring-black ring-opacity-5' : ''
       "
       @click="
-        setActiveTab('favs');
+        activeTab = 'favs';
         $emit('onTabChange', 'favs');
       "
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-4 w-4"
+        class="w-4 h-4"
         :class="{ 'text-yellow-400': activeTab === 'favs' }"
         viewBox="0 0 20 20"
         fill="currentColor"
@@ -64,12 +64,7 @@ import { defineComponent, ref } from "vue";
 export default defineComponent({
   setup() {
     const activeTab = ref("list");
-
-    const setActiveTab = (tab: string) => {
-      activeTab.value = tab;
-    };
-
-    return { activeTab, setActiveTab };
+    return { activeTab };
   },
 });
 </script>
