@@ -6,16 +6,19 @@ module.exports = {
     browser
       .init()
       .waitForElementVisible('#app')
-      .assert.elementPresent('.hello')
-      .assert.containsText('h1', 'Welcome to Your Vue.js + TypeScript App')
-      .assert.elementCount('img', 1)
+      .assert.containsText('h1', 'Movies')
+      .waitForElementVisible('.movie-list')
+      .assert.elementCount('.movie-list li', 10)
+      .click('ul li button')
+      .assert.elementPresent('ul li button svg.text-yellow-500')
+      .click('.tab-favs')
+      .assert.elementCount('.favs ul li', 1)
+      .click('.tab-list')
+      .setValue('input[type="text"]', 'spiderman')
+      .pause(2000)
+      .assert.containsText('h2', 'Spiderman')
       .end()
   },
 
-  'example e2e test using a custom command': browser => {
-    browser
-      .openHomepage()
-      .assert.elementPresent('.hello')
-      .end()
-  }
+  
 }
